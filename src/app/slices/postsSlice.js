@@ -59,6 +59,10 @@ export const deletePost = createAsyncThunk('posts/deletePost', async (initialPos
     return `${response?.status}: ${response?.statusText}`;
 })
 
+//https://redux-toolkit.js.org/usage/usage-guide#simplifying-slices-with-createslice
+/**
+ * To simplify this process, Redux Toolkit includes a createSlice function that will auto-generate the action types and action creators for you, based on the names of the reducer functions you provide.
+ */
 const postsSlice = createSlice({
     name: 'posts',
     initialState,
