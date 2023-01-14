@@ -94,6 +94,18 @@ const postsSlice = createSlice({
     name: 'posts',
     initialState,
         // standard reducer logic, with auto-generated action types per reducer
+        // inside create slice we change the state using immer https://immerjs.github.io/immer/
+/**
+ * The Immer package exposes a default function that does all the work.
+
+produce(baseState, recipe: (draftState) => void): nextState
+
+produce takes a base state, and a recipe that can be used to perform all the desired mutations on the draft that is passed in. The interesting thing about Immer is that the baseState will be untouched, but the nextState will reflect all changes made to draftState
+
+all standard JavaScript APIs can be used on the draft object, including field assignments, delete operations, and mutating array, Map and Set operations like push, pop, splice, set, sort, remove, etc.
+
+
+ */
     reducers: {
         // only front end
         reactionAdded(state, action) {
