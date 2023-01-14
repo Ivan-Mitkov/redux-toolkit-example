@@ -89,10 +89,7 @@ export const deletePost = createAsyncThunk('posts/deletePost', async (initialPos
     return `${response?.status}: ${response?.statusText}`;
 })
 
-//https://redux-toolkit.js.org/usage/usage-guide#simplifying-slices-with-createslice
-/**
- * Redux Toolkit includes a createSlice function that will auto-generate the action types and action creators for you, based on the names of the reducer functions you provide.
- */
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState,
@@ -213,6 +210,10 @@ export const getPostsStatus = (state) => state.posts.status;
 export const getPostsError = (state) => state.posts.error;
 export const getCount = (state) => state.posts.count;
 
+/**
+ * https://github.com/reduxjs/reselect
+ * Reselect exports a createSelector API, which generates memoized selector functions. createSelector accepts one or more "input" selectors, which extract values from arguments, and an "output" selector that receives the extracted values and should return a derived value. If the generated selector is called multiple times, the output will only be recalculated when the extracted values have changed.
+ */
 export const selectPostsByUser = createSelector(
     [selectAllPosts, (state, userId) => userId],
     (posts, userId) => posts.filter(post => post.userId === userId)
